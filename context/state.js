@@ -1,30 +1,29 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { getUserProfile } from '../data/auth';
-import { useRouter } from "next/router"
+import { createContext, useContext, useEffect, useState } from "react";
+import { getUserProfile } from "../data/auth";
+import { useRouter } from "next/router";
 
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
-  const [profile, setProfile] = useState({})
-  const [token, setToken] = useState("")
-  const router = useRouter()
+  const [profile, setProfile] = useState({});
+
+  const [token, setToken] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
-    setToken(localStorage.getItem('token'))
-  }, [])
+    setToken(localStorage.getItem("token"));
+  }, []);
 
   useEffect(() => {
     if (token) {
-      localStorage.setItem('token', token)
-      if (!("id" in profile)) {
-        getUserProfile().then((profileData) => {
-          if (profileData) {
-            setProfile(profileData)
-          }
-        })
-      }
+      localStorage.setItem("token", token);
+      getUserProfile().then((profileData) => {
+        if (profileData) {
+          setProfile(profileData);
+        }
+      });
     }
-  }, [token])
+  }, [token]);
 
   return (
     <AppContext.Provider value={{ profile, token, setToken, setProfile }}>

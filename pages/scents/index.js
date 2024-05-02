@@ -1,8 +1,10 @@
-import { getScents } from "@/data/scents";
+import { ScentCard } from "@/app/components/scent/card";
+import { deleteScent, getScents } from "@/data/scents";
 import { useState, useEffect } from "react";
 
 export default function Scents() {
   const [scents, setScents] = useState([]);
+  const [isOwner, setIsOwner] = useState(false);
 
 
   useEffect(() => {
@@ -11,14 +13,22 @@ export default function Scents() {
     });
   }, []);
 
+  const refresh = () => {
+    getScents().then((data) => {
+        setScents(data);
+      });
+  }
+
+  const removeScent = (scentId) => {
+    deleteScent(scentId).then(refresh);
+  };
+
   return (
     <div>
       {scents.map((scent) => {
         return (
           <div>
-            <div>{scent.title}</div>
-            <div>{scent.description}</div>
-            <div>{scent.created_at}</div>
+            <ScentCard scent={scent} removeScent={removeScent} isOwner={isOwner}/>
           </div>
         );
       })}

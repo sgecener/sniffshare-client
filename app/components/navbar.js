@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
       <div>
         <div>
-          <Link href="/add-scent">Add a Scent</Link>
+          <Link href="/scents/new">Add a Scent</Link>
         </div>
         <div>
           <Link href="/favorite-scents">Favorite Scents</Link>
@@ -27,7 +27,7 @@ const Navbar = () => {
 
         <div className="navbar-end">
           <div className="navbar-item">
-            <Link href="/profile">User Profile</Link>
+            <Link href={`/profile`}>User Profile</Link>
           </div>
         </div>
         <div>
@@ -53,13 +53,11 @@ const Navbar = () => {
         <div className="navbar-item">
           <div className="buttons">
             <Link href="/register">
-      
-                <strong>Sign up</strong>
-              
+              <strong>Sign up</strong>
             </Link>
-            <Link href="/login">
-             Log in
-            </Link>
+          </div>
+          <div>
+            <Link href="/login">Log in</Link>
           </div>
         </div>
       </>
@@ -69,7 +67,9 @@ const Navbar = () => {
   return (
     <nav className="navbar is-primary" ref={navbar}>
       <div className="navbar-brand">
-        <Link href="/">SniffShare</Link>
+        <Link href="/">
+          <h1>SniffShare</h1>
+        </Link>
       </div>
 
       <div className="navbar-menu">
