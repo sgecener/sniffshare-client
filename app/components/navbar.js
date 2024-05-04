@@ -22,7 +22,7 @@ const Navbar = () => {
           <Link href="/scents/new">Add a Scent</Link>
         </div>
         <div>
-          <Link href="/favorite-scents">Favorite Scents</Link>
+          <Link href="/favorites">Favorite Scents</Link>
         </div>
 
         <div className="navbar-end">

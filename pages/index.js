@@ -8,7 +8,7 @@ export default function Index() {
 
   return (
     <div>
-      <h1>Hellö wOrld?</h1>
+      <h1>Scents</h1>
       <Scents />
       
     </div>
