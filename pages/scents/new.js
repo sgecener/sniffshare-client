@@ -13,15 +13,13 @@ export default function NewScent() {
     const { title, description, category, tags } =
       formEl.current;
 
-      const tagObject = {
-        id: tags.value // Assuming tags.value is the id value
-      };
+  
       
     const scent = {
       title: title.value,
       description: description.value,
       category: category.value,
-      tags: [tagObject]
+      tags: tags.value
     
     };
 

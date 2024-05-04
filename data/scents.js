@@ -28,13 +28,7 @@ export function getCategories() {
   });
 }
 
-export function getTags() {
-  return fetchWithResponse("tags", {
-    headers: {
-      Authorization: `Token ${localStorage.getItem("token")}`,
-    },
-  });
-}
+
 
 export function addScent(scent) {
   return fetchWithResponse(`scent_posts`, {
@@ -48,7 +42,7 @@ export function addScent(scent) {
 }
 
 export function editScent(id, scent) {
-  return fetchWithoutResponse(`scents/${id}`, {
+  return fetchWithoutResponse(`scent_posts/${id}`, {
     method: "PUT",
     headers: {
       Authorization: `Token ${localStorage.getItem("token")}`,

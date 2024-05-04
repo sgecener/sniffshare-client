@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import CardLayout from '../card-layout'
 import { Textarea, Select, Input } from '../form-elements'
-import { getCategories, getTags } from '@/data/scents'
+import { getCategories } from '@/data/scents'
+import { getTags } from '@/data/tags'
 
 export default function ScentForm({ formEl, saveEvent, title, router }) {
   const [categories, setCategories] = useState([])

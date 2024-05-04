@@ -78,7 +78,7 @@ export function Detail({ scent, isOwner }) {
                 )}
                 {isOwner ? (
                   <footer className="card-footer">
-                    <button onClick={() =>  {router.push(`/scent_posts/${scent.id}/edit`)}}>Edit</button>
+                    <button onClick={() =>  {router.push(`/scents/${scent.id}/edit`)}}>Edit</button>
                     <button
                       onClick={() => removeScent(scent.id)}
                       className="card-footer-item"

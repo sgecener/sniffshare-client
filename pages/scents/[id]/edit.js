@@ -1,77 +1,98 @@
-import { useRouter } from 'next/router'
-import { useRef, useEffect, useState } from 'react'
-import Layout from '../../../components/layout'
-import Navbar from '../../../components/navbar'
+import { useRouter } from "next/router";
+import { useRef, useEffect, useState } from "react";
 
-import { useAppContext } from '@/context/state'
-import { getScentById } from '@/data/scents'
-import ScentForm from '@/app/components/scent/form'
+import { useAppContext } from "@/context/state";
+import { editScent, getScentById } from "@/data/scents";
+import ScentForm from "@/app/components/scent/form";
+import Layout from "@/app/components/layout";
+import Navbar from "@/app/components/navbar";
+import { getTagNameById, getTags } from "@/data/tags";
 
 export default function EditScent() {
-  const formEl = useRef()
-  const router = useRouter()
-  const [scent, setScent] = useState()
-  const { profile } = useAppContext()
-  const { id } = router.query
+  const formEl = useRef();
+  const router = useRouter();
+  const [scent, setScent] = useState();
+  const [scentTags, setScentTags] = useState([])
+  const { profile, token } = useAppContext();
+  const { id } = router.query;
 
+  
   useEffect(() => {
     if (id && profile) {
-      getScentById(id).then(scentData => {
-        if (scentData) {
-          if (scentData.store.id === profile.store?.id) {
-            setScent(scentData)
+      getScentById(id).then((scentData) => {
+        if (token) {
+          if (scentData.is_owner) {
+            setScent(scentData);
           } else {
-            router.back()
+            router.back();
           }
         }
-      })
+      });
     }
-  }, [id, scent])
+  }, [id, token]);
 
   useEffect(() => {
     if (scent) {
-      const { title, description,  category, tags } = formEl.current
+      const { title, description, category, tags } = formEl.current;
 
-      title.value = scent.title
-      description.value = scent.description
-      category.value = scent.category.id
-      tags.value = scent.tags.id
+      title.value = scent.title;
+      description.value = scent.description;
+      category.value = scent.category_id;
+
+      const tagIds = scent.tags.map((tag) => tag.id).join(", ");
+      tags.value = tagIds;
     }
-  }, [formEl, scent])
+  }, [formEl, scent]);
 
+  const saveScent = async () => {
+    const { title, description, category, tags } = formEl.current;
+    // Split the comma-separated tag IDs and trim any leading/trailing whitespace
+    const tagIds = tags.value.split(",").map((id) => id.trim());
 
-  const saveScent = () => {
-    const { name, description, category, tags} = formEl.current
-
-    const tagObject = {
-        id: tags.value // Assuming tags.value is the id value
+    try {
+      // Create an array of tag objects with "id" and "name" keys
+      const tagObjects = await Promise.all(
+        tagIds.map(async (tagId) => {
+          const tagName = await getTagNameById(tagId); // Await the Promise resolution
+          return { id: parseInt(tagId), name: tagName };
+        })
+      );
+  
+      const scent = {
+        title: title.value,
+        description: description.value,
+        category: category.value,
+        tags: tagObjects,
       };
-
-    const scent = {
-      name: name.value,
-      description: description.value,
-      category_id: category.value,
-      tags: [tagObject]
+  
+      editScent(id, scent, token)
+        .then(() => router.push(`/scents/${id}`))
+        .catch((error) => {
+          console.error("Error editing scent:", error);
+          // Display an error message to the user
+        });
+    } catch (error) {
+      console.error("Error fetching tag objects:", error);
+      // Display an error message to the user
     }
-
-    editProduct(id, scent).then(() => router.push(`/scents/${id}`))
-  }
+  };
+  
 
   return (
     <ScentForm
       formEl={formEl}
       saveEvent={saveScent}
-      title="Add a new product"
+      title="Edit scent"
       router={router}
     ></ScentForm>
-  )
+  );
 }
 
-NewProduct.getLayout = function getLayout(page) {
+EditScent.getLayout = function getLayout(page) {
   return (
     <Layout>
       <Navbar />
       {page}
     </Layout>
-  )
-}
+  );
+};
