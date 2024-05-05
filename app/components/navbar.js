@@ -2,11 +2,13 @@ import { useAppContext } from "@/context/state";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useAuthContext } from "@/context/auth";
 
 const Navbar = () => {
   const { token } = useAppContext();
   const navbar = useRef();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, setIsLoggedIn } = useAuthContext()
   const router = useRouter();
 
   useEffect(() => {

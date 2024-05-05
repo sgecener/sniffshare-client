@@ -7,16 +7,17 @@ import { getTags } from '@/data/tags'
 export default function ScentForm({ formEl, saveEvent, title, router }) {
   const [categories, setCategories] = useState([])
   const [tags, setTags] = useState([])
+ 
 
   useEffect(() => {
-    getCategories().then(catData => setCategories(catData))
-  }, [])
+    getCategories().then(catData => setCategories(catData));
+  }, []);
 
   useEffect(() => {
-    getTags().then(tagData => setTags(tagData))
-  }, [])
+    getTags().then(tagData => setTags(tagData));
+  }, []);
 
-
+  
 
   return (
     <CardLayout title={title}>
@@ -35,13 +36,17 @@ export default function ScentForm({ formEl, saveEvent, title, router }) {
           label="Category"
           title="Select a Category"
         />
-        <Select
-          id="tags"
-          options={tags}
-          label="Tags"
-          title="Select a Tag"
+        <div>
+          <label>Add Tags</label>
+          <Select
+            id="tags"
+            options={tags}
+            title="Select a Tag"
+
+          />
+        </div>
           
-        />
+        
       </form>
       <>
         <button className="card-footer-item" onClick={saveEvent}>Save</button>

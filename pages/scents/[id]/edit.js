@@ -6,13 +6,12 @@ import { editScent, getScentById } from "@/data/scents";
 import ScentForm from "@/app/components/scent/form";
 import Layout from "@/app/components/layout";
 import Navbar from "@/app/components/navbar";
-import { getTagNameById, getTags } from "@/data/tags";
+import { getTagNameById } from "@/data/tags";
 
 export default function EditScent() {
   const formEl = useRef();
   const router = useRouter();
   const [scent, setScent] = useState();
-  const [scentTags, setScentTags] = useState([])
   const { profile, token } = useAppContext();
   const { id } = router.query;
 

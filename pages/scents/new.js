@@ -20,9 +20,8 @@ export default function NewScent() {
       description: description.value,
       category: category.value,
       tags: tags.value
-    
+      
     };
-
     addScent(scent).then(() => router.push(`/`));
   };
 
