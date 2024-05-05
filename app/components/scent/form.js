@@ -42,7 +42,6 @@ export default function ScentForm({ formEl, saveEvent, title, router }) {
             id="tags"
             options={tags}
             title="Select a Tag"
-
           />
         </div>
           

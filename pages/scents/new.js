@@ -14,7 +14,6 @@ export default function NewScent() {
       formEl.current;
 
   
-      
     const scent = {
       title: title.value,
       description: description.value,
