@@ -28,6 +28,13 @@ export function getCategories() {
   });
 }
 
+export function getCategoryById(id) {
+  return fetchWithResponse(`categories/${id}`, {
+    headers: {
+      Authorization: `Token ${localStorage.getItem("token")}`,
+    },
+  });
+}
 
 
 export function addScent(scent) {

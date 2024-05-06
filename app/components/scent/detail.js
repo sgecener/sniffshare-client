@@ -4,10 +4,10 @@ import { useAppContext } from "@/context/state";
 import { getUserProfile } from "@/data/auth";
 import { deleteScent, favoriteScent, unFavoriteScent } from "@/data/scents";
 
-export function Detail({ scent, isOwner }) {
+export function Detail({ scent, isOwner, cat }) {
   const { profile, setProfile } = useAppContext();
   const [isLiked, setIsLiked] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const favorite = () => {
     favoriteScent(scent.id).then(() => {
@@ -23,18 +23,19 @@ export function Detail({ scent, isOwner }) {
 
   const removeScent = (scentId) => {
     deleteScent(scentId).then(() => {
-      router.push("/")
+      router.push("/");
     });
   };
 
   useEffect(() => {
-    const likedScent = profile.favorite_posts?.find(x => x.scent_post.id === scent.id);
-    
+    const likedScent = profile.favorite_posts?.find(
+      (x) => x.scent_post.id === scent.id
+    );
+
     if (likedScent !== undefined) {
-    setIsLiked(true);  
+      setIsLiked(true);
     }
-    
-  }, [profile.favorite_posts , scent.id]);
+  }, [profile.favorite_posts, scent.id]);
 
   useEffect(() => {
     getUserProfile().then((profileData) => {
@@ -48,7 +49,12 @@ export function Detail({ scent, isOwner }) {
     <>
       <div className="max-w-xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden mb-4">
         <div className="p-6">
-          <h1 className="text-2xl font-semibold mb-2">{scent.title}</h1>
+          <div>
+            <h1 className="text-2xl font-semibold mb-2">{scent.title}</h1>{" "}
+            <span>
+              {scent.category_id === cat.id ? <span>{cat.name}</span> : ""}
+            </span>
+          </div>
           <p className="text-gray-600">{scent.description}</p>
         </div>
         <div className="flex justify-between items-center p-6">
@@ -95,5 +101,4 @@ export function Detail({ scent, isOwner }) {
       </div>
     </>
   );
-  
 }
