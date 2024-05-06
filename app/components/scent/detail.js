@@ -46,54 +46,54 @@ export function Detail({ scent, isOwner }) {
 
   return (
     <>
-      <div className="tile is-ancestor">
-        <div className="tile is-parent is-vertical ">
-          <article className="tile is-child">
-            <h1 className="title">{scent.title}</h1>
-            <p>{scent.description}</p>
-          </article>
-          <article className="tile is-child is-align-self-center">
-            <div className="field is-grouped">
-              <p className="control">
-                {isLiked ? (
-                  <button
-                    className="button is-link is-outlined"
-                    onClick={unfavorite}
-                  >
-                    <span className="icon is-small">
-                      <i className="fas fa-heart-broken"></i>
-                    </span>
-                    <span>Remove From Favorites</span>
-                  </button>
-                ) : (
-                  <button
-                    className="button is-link is-outlined"
-                    onClick={favorite}
-                  >
-                    <span className="icon is-small">
-                      <i className="fas fa-heart"></i>
-                    </span>
-                    <span>Add To Favorites</span>
-                  </button>
-                )}
-                {isOwner ? (
-                  <footer className="card-footer">
-                    <button onClick={() =>  {router.push(`/scents/${scent.id}/edit`)}}>Edit</button>
-                    <button
-                      onClick={() => removeScent(scent.id)}
-                      className="card-footer-item"
-                    >
-                      Delete
-                    </button>
-                  </footer>
-                ) : (
-                  <></>
-                )}
-              </p>
+      <div className="max-w-xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden mb-4">
+        <div className="p-6">
+          <h1 className="text-2xl font-semibold mb-2">{scent.title}</h1>
+          <p className="text-gray-600">{scent.description}</p>
+        </div>
+        <div className="flex justify-between items-center p-6">
+          <div className="mb-4">
+            {isLiked ? (
+              <button
+                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
+                onClick={unfavorite}
+              >
+                <span className="mr-2">
+                  <i className="fas fa-heart-broken"></i>
+                </span>
+                Remove From Favorites
+              </button>
+            ) : (
+              <button
+                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
+                onClick={favorite}
+              >
+                <span className="mr-2">
+                  <i className="fas fa-heart"></i>
+                </span>
+                Add To Favorites
+              </button>
+            )}
+          </div>
+          {isOwner && (
+            <div className="flex items-center">
+              <button
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mr-2 transition-colors duration-300"
+                onClick={() => router.push(`/scents/${scent.id}/edit`)}
+              >
+                Edit
+              </button>
+              <button
+                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
+                onClick={() => removeScent(scent.id)}
+              >
+                Delete
+              </button>
             </div>
-          </article>
+          )}
         </div>
       </div>
     </>
   );
+  
 }

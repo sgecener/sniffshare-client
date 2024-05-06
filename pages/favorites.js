@@ -20,8 +20,8 @@ export default function Favorites() {
 
       return (
         <>
-          <h1>My Favorites</h1>
-          <div>
+          <h1 className="text-2xl px-5 mt-5">My Favorites</h1>
+          <div className="mt-5 justify-center items-center">
             {profile.favorite_posts && profile.favorite_posts.length > 0 ? (
               profile.favorite_posts.map((favPost) => (
                 <ScentCard

@@ -3,6 +3,7 @@ import { Select } from "@/app/components/form-elements";
 import { ScentCard } from "@/app/components/scent/card";
 import { getCategories, getScents } from "@/data/scents";
 
+
 export default function Scents() {
   const [scents, setScents] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -33,7 +34,7 @@ export default function Scents() {
   }, [scents, selectedCategory]);
 
   return (
-    <div>
+    <div className="py-7">
       <Select
         id="category"
         options={categories}
@@ -41,7 +42,7 @@ export default function Scents() {
         onChange={handleCategoryChange}
         value={selectedCategory}
       />
-      <div>
+      <div className="py-10">
         {filteredScents.map((scent) => (
           <div key={scent.id}>
             <ScentCard scent={scent} />

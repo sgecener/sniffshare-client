@@ -30,35 +30,42 @@ export default function Login() {
   }
 
   return (
-    <div className="columns is-centered">
-      <div className="column is-half">
-        <form className="box">
-          <h1 className="title">Welcome Back!</h1>
+    <div className="max-w-xl mx-auto">
+  <div className="bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="p-6">
+      <h1 className="text-2xl font-semibold title">Login</h1>
+      <form className="box">
+        <div className="mb-4 mt-5">
           <Input
             id="username"
             refEl={username}
             type="text"
             label="Username"
           />
+        </div>
+        <div className="mb-4">
+          
           <Input
             id="password"
             refEl={password}
             type="password"
             label="Password"
           />
-          <div className="field is-grouped">
-            <div className="control">
-              <button className="button is-link" onClick={submit}>Login</button>
-            </div>
-            <div className="control">
-              <Link href="/register">
-                <button className="button is-link is-light">Register</button>
-              </Link>
-            </div>
+        </div>
+        <div className="field is-grouped">
+          <div className="control">
+            <button className="button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300" onClick={submit}>Login</button>
+
+            <Link href="/register">
+              <button className="button bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded transition-colors duration-300">Register</button>
+            </Link>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
+
   )
 }
 

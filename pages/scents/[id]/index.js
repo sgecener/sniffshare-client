@@ -34,7 +34,7 @@ export default function ScentDetail() {
 
   return (
     <div className="columns is-centered">
-      <div className="column">
+      <div className="flex flex-wrap justify-center items-center -mb-4 py-10">
         <Detail scent={scent} isOwner={scent.is_owner} />
         {/* <Ratings
               refresh={refresh}
