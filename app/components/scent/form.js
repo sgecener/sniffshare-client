@@ -7,14 +7,38 @@ import { getTags } from '@/data/tags';
 export default function ScentForm({ formEl, saveEvent, title, router }) {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
+  const [tagInput, setTagInput] = useState(''); // State for tag input
 
   useEffect(() => {
     getCategories().then(catData => setCategories(catData));
   }, []);
 
-  useEffect(() => {
-    getTags().then(tagData => setTags(tagData));
-  }, []);
+  const handleTagInputChange = (event) => {
+    setTagInput(event.target.value);
+  };
+
+  const handleAddTag = () => {
+    if (tagInput.trim() !== '') {
+      setTags([...tags, tagInput.trim()]);
+      setTagInput('');
+    }
+  };
+
+  const handleRemoveTag = (tagToRemove) => {
+    setTags(tags.filter(tag => tag !== tagToRemove));
+  };
+
+  // const handleSave = () => {
+  //   // Save tags to the database
+  //   saveTags(tags).then(() => {
+  //     // Proceed with other save events or navigation
+  //     saveEvent();
+  //   }).catch(error => {
+  //     // Handle error
+  //     console.error('Error saving tags:', error);
+  //   });
+  // };
+
 
   return (
     <CardLayout title={title}>
@@ -45,14 +69,35 @@ export default function ScentForm({ formEl, saveEvent, title, router }) {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Add Tags</label>
-          <Select
-            id="tags"
-            options={tags}
-            title="Select a Tag"
+          <Input
+            id="tagInput"
+            label="Add Tags"
+            placeholder="Enter tags..."
+            value={tagInput}
+            onChange={handleTagInputChange}
             addlClass="mb-4"
           />
+          <button
+            type="button"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={handleAddTag}
+          >
+            Add Tag
+          </button>
         </div>
+        {/* Display added tags */}
+        {tags.map((tag, index) => (
+          <div key={index} className="flex items-center mb-2">
+            <span className="mr-2">{tag}</span>
+            <button
+              type="button"
+              className="text-red-600 hover:text-red-800"
+              onClick={() => handleRemoveTag(tag)}
+            >
+              Remove
+            </button>
+          </div>
+        ))}
       </form>
       <div className="flex justify-end">
         <button

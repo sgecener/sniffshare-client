@@ -52,7 +52,7 @@ export function Detail({ scent, isOwner, cat }) {
           <div>
             <h1 className="text-2xl font-semibold mb-2">{scent.title}</h1>{" "}
             <span>
-              {scent.category_id === cat.id ? <span>{cat.name}</span> : ""}
+              {cat.id === scent.category_id ? <span>{cat.name}</span> : ""}
             </span>
           </div>
           <p className="text-gray-600">{scent.description}</p>
