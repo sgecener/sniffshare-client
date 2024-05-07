@@ -2,43 +2,55 @@ import { useEffect, useState } from 'react';
 import CardLayout from '../card-layout';
 import { Textarea, Select, Input } from '../form-elements';
 import { getCategories } from '@/data/scents';
-import { getTags } from '@/data/tags';
 
-export default function ScentForm({ formEl, saveEvent, title, router }) {
+export default function ScentForm({ formEl, saveEvent, title, router, tags, setTags }) {
   const [categories, setCategories] = useState([]);
-  const [tags, setTags] = useState([]);
-  const [tagInput, setTagInput] = useState(''); // State for tag input
+  const [tagInput, setTagInput] = useState('');
 
   useEffect(() => {
     getCategories().then(catData => setCategories(catData));
   }, []);
+
+  useEffect(() => {
+    console.log(tags)
+  }, [])
 
   const handleTagInputChange = (event) => {
     setTagInput(event.target.value);
   };
 
   const handleAddTag = () => {
-    if (tagInput.trim() !== '') {
-      setTags([...tags, tagInput.trim()]);
-      setTagInput('');
+    try {
+      if (tagInput.trim() !== '') {
+        const newTag = {
+          name: tagInput.trim()
+        };
+        setTags([...tags, newTag]);
+        setTagInput('');
+      }
+    } catch (error) {
+      console.error('Error adding tag:', error);
     }
   };
 
-  const handleRemoveTag = (tagToRemove) => {
-    setTags(tags.filter(tag => tag !== tagToRemove));
+  const handleRemoveTag = (tagIdToRemove) => {
+    setTags(tags.filter(tag => tag.id !== tagIdToRemove));
   };
 
-  // const handleSave = () => {
-  //   // Save tags to the database
-  //   saveTags(tags).then(() => {
-  //     // Proceed with other save events or navigation
-  //     saveEvent();
-  //   }).catch(error => {
-  //     // Handle error
-  //     console.error('Error saving tags:', error);
-  //   });
-  // };
-
+  const handleSaveScent = () => {
+    if (formEl.current) {
+      const { title, description, category } = formEl.current;
+      const tagValues = tags.map(tag => ({name: tag.name}));
+      
+      const scent = {
+        title: title.value,
+        description: description.value,
+        category: category.value,
+        tags: tagValues,
+      };
+      saveEvent(scent);
+    }
+  };
 
   return (
     <CardLayout title={title}>
@@ -69,6 +81,7 @@ export default function ScentForm({ formEl, saveEvent, title, router }) {
           />
         </div>
         <div>
+          
           <Input
             id="tagInput"
             label="Add Tags"
@@ -77,32 +90,31 @@ export default function ScentForm({ formEl, saveEvent, title, router }) {
             onChange={handleTagInputChange}
             addlClass="mb-4"
           />
-          <button
-            type="button"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={handleAddTag}
-          >
-            Add Tag
-          </button>
-        </div>
-        {/* Display added tags */}
-        {tags.map((tag, index) => (
-          <div key={index} className="flex items-center mb-2">
-            <span className="mr-2">{tag}</span>
+          {tags.map((tag) => (
+          <div key={tag.id} className="flex items-center mb-2">
+            <span className="mr-2">{tag.name}</span>
             <button
               type="button"
               className="text-red-600 hover:text-red-800"
-              onClick={() => handleRemoveTag(tag)}
+              onClick={() => handleRemoveTag(tag.id)}
             >
               Remove
             </button>
           </div>
         ))}
+          <button
+            type="button"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => handleAddTag()}
+          >
+            Add Tag
+          </button>
+        </div>
       </form>
       <div className="flex justify-end">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-          onClick={saveEvent}
+          onClick={handleSaveScent}
         >
           Save
         </button>

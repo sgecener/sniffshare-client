@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Layout from "../../app/components/layout";
 import Navbar from "../../app/components/navbar";
 import { addScent } from "@/data/scents";
@@ -9,25 +9,18 @@ export default function NewScent() {
   const formEl = useRef();
   const router = useRouter();
 
-  const saveScent = () => {
-    const { title, description, category, tags } =
-      formEl.current;
+  const [tags, setTags] = useState([]);
 
-  
-    const scent = {
-      title: title.value,
-      description: description.value,
-      category: category.value,
-      tags: tags.value
-      
-    };
-    addScent(scent).then(() => router.push(`/`));
+  const handleSaveScent = (scentData) => {
+    addScent(scentData).then(() => router.push(`/`));
   };
 
   return (
     <ScentForm
       formEl={formEl}
-      saveEvent={saveScent}
+      saveEvent={handleSaveScent}
+      tags={tags}
+      setTags={setTags}
       title="Add A New Scent"
       router={router}
     ></ScentForm>

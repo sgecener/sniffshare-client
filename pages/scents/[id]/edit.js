@@ -38,8 +38,8 @@ export default function EditScent() {
       description.value = scent.description;
       category.value = scent.category_id;
 
-      const tagIds = scent.tags.map((tag) => tag.id).join(", ");
-      tags.value = tagIds;
+      const tagNames = scent.tags.map((tag) => tag.id).join(", ");
+      tags.value = tagNames;
     }
   }, [formEl, scent]);
 
