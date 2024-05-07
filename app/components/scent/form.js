@@ -33,8 +33,8 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
     }
   };
 
-  const handleRemoveTag = (tagIdToRemove) => {
-    setTags(tags.filter(tag => tag.id !== tagIdToRemove));
+  const handleRemoveTag = (tagIndex) => {
+    setTags(tags.filter((_, index) => index !== tagIndex));
   };
 
   const handleSaveScent = () => {
@@ -90,13 +90,13 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
             onChange={handleTagInputChange}
             addlClass="mb-4"
           />
-          {tags.map((tag) => (
-          <div key={tag.id} className="flex items-center mb-2">
+          {tags.map((tag, index) => (
+          <div key={index} className="flex items-center mb-2">
             <span className="mr-2">{tag.name}</span>
             <button
               type="button"
               className="text-red-600 hover:text-red-800"
-              onClick={() => handleRemoveTag(tag.id)}
+              onClick={() => handleRemoveTag(index)}
             >
               Remove
             </button>
