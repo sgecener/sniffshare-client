@@ -18,7 +18,6 @@ export default function ScentDetail() {
         // Fetch category using the category_id from scentData
         getCategoryById(scentData.category_id).then((catData) => {
           setCategory(catData);
-          console.log(catData);
         }).catch(error => {
           console.error("Error fetching category:", error);
         });

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import CardLayout from '../card-layout';
 import { Textarea, Select, Input } from '../form-elements';
 import { getCategories } from '@/data/scents';
+import { deleteScentTagById, getScentTagById } from '@/data/tags';
 
 export default function ScentForm({ formEl, saveEvent, title, router, tags, setTags }) {
   const [categories, setCategories] = useState([]);
@@ -10,10 +11,6 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
   useEffect(() => {
     getCategories().then(catData => setCategories(catData));
   }, []);
-
-  useEffect(() => {
-    console.log(tags)
-  }, [])
 
   const handleTagInputChange = (event) => {
     setTagInput(event.target.value);
@@ -96,7 +93,7 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
             <button
               type="button"
               className="text-red-600 hover:text-red-800"
-              onClick={() => handleRemoveTag(index)}
+              onClick={() => handleRemoveTag(index) }
             >
               Remove
             </button>

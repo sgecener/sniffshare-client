@@ -16,7 +16,6 @@ export default function Profile() {
     getUserProfile().then((profileData) => {
       if (profileData) {
         if (token) {
-          console.log(profileData);
           setProfile(profileData);
         }
       }

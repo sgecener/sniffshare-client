@@ -22,6 +22,7 @@ export default function EditScent() {
             setScent(scentData);
             const initialTags = scentData.tags
             setTags(initialTags);
+
           } else {
             router.back();
           }
