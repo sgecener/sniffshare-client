@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
-export function ScentCard({ scent, className }) {
+export function ScentCard({ scent }) {
   return (
-    <div className={`card ${className} flex flex-col md:flex-row md:items-stretch bg-white rounded-lg shadow-lg overflow-hidden mb-1 hover:bg-indigo-100 transition-colors duration-300`}>
-      <Link href={`/scents/${scent.id}`}>
+    <div >
+      <Link href={`/scents/${scent.id}`}  className={`card flex flex-col md:flex-row md:items-stretch bg-white rounded-lg shadow-lg overflow-hidden mb-1 hover:bg-indigo-100 transition-colors duration-300`}>
         <div className="md:w-2/3 p-4">
           <header className="mb-2">
             <p className="text-lg font-semibold">{scent.title}</p>

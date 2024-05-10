@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import Layout from "../../../app/components/layout";
 import Navbar from "../../../app/components/navbar";
 import { Detail } from "../../../app/components/scent/detail";
-import { getCategoryById, getScentById } from "@/data/scents";
+import { getCategoryById, getReviewByPostId, getScentById } from "@/data/scents";
 
 export default function ScentDetail() {
   const router = useRouter();
   const { id } = router.query;
   const [scent, setScent] = useState({});
   const [category, setCategory] = useState({});
+  // const [review, setReview] = useState({})
 
   const refresh = () => {
     getScentById(id).then((scentData) => {
@@ -21,25 +22,24 @@ export default function ScentDetail() {
         }).catch(error => {
           console.error("Error fetching category:", error);
         });
+        // getReviewByPostId(scentData.id).then((reviewData) => {
+        //   setReview(reviewData)
+        // })
+
       }
     }).catch(error => {
       console.error("Error fetching scent:", error);
     });
   };
   
-  // const like = () => {
-  //     likeProduct(id).then(refresh)
-  //   }
-
-  //   const unlike = () => {
-  //     unLikeProduct(id).then(refresh)
-  //   }
-
   useEffect(() => {
   if (id) {
     refresh()
   }
 }, [id]);
+
+useEffect(() => {
+})
 
   return (
     <div className="columns is-centered">

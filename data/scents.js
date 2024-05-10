@@ -11,6 +11,13 @@ export function getScents() {
     },
   });
 }
+export function getReviewByPostId(id) {
+  return fetchWithoutResponse(`scent_reviews/${id}`, {
+    headers: {
+      Authorization: `Token ${localStorage.getItem("token")}`,
+    },
+  });
+}
 
 export function getScentById(id) {
   return fetchWithResponse(`scent_posts/${id}`, {

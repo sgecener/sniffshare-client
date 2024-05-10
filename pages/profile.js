@@ -24,7 +24,7 @@ export default function Profile() {
 
   return (
     <div>
-      <div className="max-w-xl mx-auto">
+      <div className="max-w-xl mx-auto py-10" >
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
           <div className="p-6">
             <h1 className="text-2xl font-semibold title">User Profile</h1>

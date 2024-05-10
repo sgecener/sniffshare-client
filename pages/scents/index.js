@@ -76,7 +76,6 @@ export default function Scents() {
             key={`${scent.id}-${index}`}
             {...scent}
             scent={scent}
-            className={scent === latestPost ? "fade-in" : ""}
           />
         ))}
       </div>

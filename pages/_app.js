@@ -7,7 +7,7 @@ export default function Sniffshare({ Component, pageProps }) {
 
 return (
     <AuthProvider>
-      <div className="flex justify-center min-h-screen pt-16">
+      <div className="flex justify-center min-h-screen pt-16 bg-indigo-50">
         <div className="w-full max-w-4xl px-4">{getLayout(<Component {...pageProps} />)}</div>
       </div>
     </AuthProvider>
