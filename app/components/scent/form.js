@@ -1,14 +1,21 @@
-import { useEffect, useState } from 'react';
-import CardLayout from '../card-layout';
-import { Textarea, Select, Input } from '../form-elements';
-import { getCategories } from '@/data/scents';
+import { useEffect, useState } from "react";
+import CardLayout from "../card-layout";
+import { Textarea, Select, Input } from "../form-elements";
+import { getCategories } from "@/data/scents";
 
-export default function ScentForm({ formEl, saveEvent, title, router, tags, setTags }) {
+export default function ScentForm({
+  formEl,
+  saveEvent,
+  title,
+  router,
+  tags,
+  setTags,
+}) {
   const [categories, setCategories] = useState([]);
-  const [tagInput, setTagInput] = useState('');
+  const [tagInput, setTagInput] = useState("");
 
   useEffect(() => {
-    getCategories().then(catData => setCategories(catData));
+    getCategories().then((catData) => setCategories(catData));
   }, []);
 
   const handleTagInputChange = (event) => {
@@ -17,15 +24,15 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
 
   const handleAddTag = () => {
     try {
-      if (tagInput.trim() !== '') {
+      if (tagInput.trim() !== "") {
         const newTag = {
-          name: tagInput.trim()
+          name: tagInput.trim(),
         };
         setTags([...tags, newTag]);
-        setTagInput('');
+        setTagInput("");
       }
     } catch (error) {
-      console.error('Error adding tag:', error);
+      console.error("Error adding tag:", error);
     }
   };
 
@@ -36,8 +43,8 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
   const handleSaveScent = () => {
     if (formEl.current) {
       const { title, description, category } = formEl.current;
-      const tagValues = tags.map(tag => ({name: tag.name}));
-      
+      const tagValues = tags.map((tag) => ({ name: tag.name }));
+
       const scent = {
         title: title.value,
         description: description.value,
@@ -49,8 +56,7 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
   };
 
   return (
-    <CardLayout title={title} >
-      <header className="flex text-xl mb-3 font-semibold">Scent Form</header>
+    <CardLayout title={title}>
       <form ref={formEl} className="space-y-7">
         <div>
           <Input
@@ -78,7 +84,6 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
           />
         </div>
         <div>
-          
           <Input
             id="tagInput"
             label="Add Tags"
@@ -88,17 +93,19 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
             addlClass="mb-4"
           />
           {tags.map((tag, index) => (
-          <div key={index} className="flex items-center mb-2">
-            <span className="bg-gray-200 rounded-full px-2 py-1 mr-2 mb-2">{tag.name}</span>
-            <button
-              type="button"
-              className="text-red-600 hover:text-red-800 pb-2"
-              onClick={() => handleRemoveTag(index) }
-            >
-              Remove
-            </button>
-          </div>
-        ))}
+            <div key={index} className="flex items-center mb-2">
+              <span className="bg-gray-200 rounded-full px-2 py-1 mr-2 mb-2">
+                {tag.name}
+              </span>
+              <button
+                type="button"
+                className="text-red-600 hover:text-red-800 pb-2"
+                onClick={() => handleRemoveTag(index)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
           <button
             type="button"
             className="bg-orange-400 hover:bg-amber-300 text-white font-bold py-2 px-4 rounded"
@@ -107,22 +114,23 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
             Add Tag
           </button>
         </div>
-        <div className="flex justify-end">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-          onClick={handleSaveScent}
-        >
-          Save
-        </button>
-        <button
-          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-          onClick={() => router.back()}
-        >
-          Cancel
-        </button>
-      </div>
       </form>
-      
+      <div className="py-5">
+        <div className="flex justify-end">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+            onClick={handleSaveScent}
+          >
+            Save
+          </button>
+          <button
+            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+            onClick={() => router.back()}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
     </CardLayout>
   );
 }
