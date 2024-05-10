@@ -28,6 +28,20 @@ const Navbar = () => {
           href="/scents/new"
           className="mr-4 py-2 px-4 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300 mb-2 md:mb-0"
         >
+          <svg
+            className="inline-block h-5 w-5 mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
           Add Scent
         </Link>
         <Link
@@ -108,7 +122,7 @@ const Navbar = () => {
     const closeDropdown = () => {
       setIsOpen(false);
     };
-  
+
     return (
       <div
         className={`${
@@ -120,6 +134,20 @@ const Navbar = () => {
           className="block py-2 px-4 rounded hover:bg-gray-100"
           onClick={closeDropdown}
         >
+          <svg
+            className="inline-block h-5 w-5 mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
           Add Scent
         </Link>
         <Link
@@ -127,6 +155,20 @@ const Navbar = () => {
           className="block py-2 px-4 rounded hover:bg-gray-100"
           onClick={closeDropdown}
         >
+          <svg
+            className="inline-block h-5 w-5 mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            />
+          </svg>
           Favorites
         </Link>
         <Link
@@ -134,6 +176,20 @@ const Navbar = () => {
           className="block py-2 px-4 rounded hover:bg-gray-100"
           onClick={closeDropdown}
         >
+          <svg
+            className="inline-block h-5 w-5 mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            />
+          </svg>
           Profile
         </Link>
         <Link
@@ -151,25 +207,24 @@ const Navbar = () => {
       </div>
     );
   };
-  
+
   return (
     <nav className="bg-gradient-to-r from-amber-200 to-orange-500 shadow-md py-4 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        
-          <Link href="/" className="flex items-center">
-            <svg
-              className="fill-current h-10 w-10 mr-2 text-black"
-              width="54"
-              height="54"
-              viewBox="0 0 54 54"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
-            </svg>
-            <span className="font-semibold text-xl tracking-tight text-black">
-              SniffShare
-            </span>
-          </Link>
+        <Link href="/" className="flex items-center">
+          <svg
+            className="fill-current h-10 w-10 mr-2 text-black"
+            width="54"
+            height="54"
+            viewBox="0 0 54 54"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+          </svg>
+          <span className="font-semibold text-xl tracking-tight text-black">
+            SniffShare
+          </span>
+        </Link>
         <div className="navbar-menu flex md:hidden">
           <button
             onClick={toggleDropdown}
@@ -189,9 +244,7 @@ const Navbar = () => {
           {isLoggedIn ? getLoggedInButtons() : getLoggedOutButtons()}
         </div>
       </div>
-      <div className="md:hidden">
-        {getDropdownMenu()}
-      </div>
+      <div className="md:hidden">{getDropdownMenu()}</div>
     </nav>
   );
 };
