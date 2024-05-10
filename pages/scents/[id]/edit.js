@@ -20,9 +20,8 @@ export default function EditScent() {
         if (token) {
           if (scentData.is_owner) {
             setScent(scentData);
-            const initialTags = scentData.tags
+            const initialTags = scentData.tags;
             setTags(initialTags);
-
           } else {
             router.back();
           }
@@ -50,14 +49,15 @@ export default function EditScent() {
   };
 
   return (
-    <ScentForm
-      formEl={formEl}
-      saveEvent={handleSaveScent}
-      title="Edit scent"
-      router={router}
-      tags={tags}
-      setTags={setTags}
-    />
+    <div className="flex justify-center items-center bg-white rounded-lg mt-10 py-8 px-4 max-w-md mx-auto">
+      <ScentForm
+        formEl={formEl}
+        saveEvent={handleSaveScent}
+        router={router}
+        tags={tags}
+        setTags={setTags}
+      />
+    </div>
   );
 }
 

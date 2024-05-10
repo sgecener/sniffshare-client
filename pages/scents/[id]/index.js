@@ -10,7 +10,7 @@ export default function ScentDetail() {
   const { id } = router.query;
   const [scent, setScent] = useState({});
   const [category, setCategory] = useState({});
-  const [review, setReview] = useState({})
+  // const [review, setReview] = useState({})
 
   const refresh = () => {
     getScentById(id).then((scentData) => {
@@ -22,9 +22,9 @@ export default function ScentDetail() {
         }).catch(error => {
           console.error("Error fetching category:", error);
         });
-        getReviewByPostId(scentData.id).then((reviewData) => {
-          setReview(reviewData)
-        })
+        // getReviewByPostId(scentData.id).then((reviewData) => {
+        //   setReview(reviewData)
+        // })
 
       }
     }).catch(error => {
@@ -44,7 +44,7 @@ useEffect(() => {
   return (
     <div className="columns is-centered">
       <div className="flex flex-wrap justify-center items-center -mb-4 py-10">
-        <Detail scent={scent} isOwner={scent.is_owner} cat={category} review={review} />
+        <Detail scent={scent} isOwner={scent.is_owner} cat={category} />
         {/* <Ratings
               refresh={refresh}
               number_purchased={product.number_purchased}

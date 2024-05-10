@@ -12,7 +12,7 @@ export default function NewScent() {
   const [tags, setTags] = useState([]);
 
   const handleSaveScent = (scentData) => {
-    addScent(scentData).then(() => router.push(`/`));
+    addScent(scentData).then(() => router.push("/"));
   };
 
   return (

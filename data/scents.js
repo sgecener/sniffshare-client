@@ -12,7 +12,7 @@ export function getScents() {
   });
 }
 export function getReviewByPostId(id) {
-  return fetchWithResponse(`scent_reviews/${id}`, {
+  return fetchWithoutResponse(`scent_reviews/${id}`, {
     headers: {
       Authorization: `Token ${localStorage.getItem("token")}`,
     },

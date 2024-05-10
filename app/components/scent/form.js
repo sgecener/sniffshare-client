@@ -50,7 +50,7 @@ export default function ScentForm({ formEl, saveEvent, title, router, tags, setT
 
   return (
     <CardLayout title={title} >
-      <header className="flex text-xl mb-3 font-semibold">Add Your Scent</header>
+      <header className="flex text-xl mb-3 font-semibold">Scent Form</header>
       <form ref={formEl} className="space-y-7">
         <div>
           <Input

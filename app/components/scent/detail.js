@@ -5,11 +5,10 @@ import { getUserProfile } from "@/data/auth";
 import {
   deleteScent,
   favoriteScent,
-  getScentReviews,
   unFavoriteScent,
 } from "@/data/scents";
 
-export function Detail({ scent, isOwner, cat, review }) {
+export function Detail({ scent, isOwner, cat }) {
   const { profile, setProfile } = useAppContext();
   const [isLiked, setIsLiked] = useState(false);
 
@@ -55,36 +54,33 @@ export function Detail({ scent, isOwner, cat, review }) {
     <>
       <div className="max-w-xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden mb-4">
         <div className="p-6">
-          <div>
-            <header className="text-2xl font-semibold mb-2">
-              {scent.title}{" "}
-              <span>
-                {cat.id === scent.category_id ? (
-                  <span className="bg-stone-600 text-white rounded-md px-3 py-1 text-base font-normal text-end">
-                    {cat.name}
-                  </span>
-                ) : (
-                  ""
-                )}
+          <div className="flex justify-between items-center">
+            <header className="text-2xl font-semibold  mx-4">
+              {scent.title}
+            </header>
+            {cat.id === scent.category_id && (
+              <span className="bg-stone-600 text-white rounded-md px-3 py-1 text-base font-normal">
+                {cat.name}
               </span>
-            </header>{" "}
+            )}
           </div>
-          <p className="text-gray-600 mt-6">{scent.description}</p>
+          <p className="text-gray-800 mt-6 mx-5">{scent.description}</p>
         </div>
-        <div className="text-sm italic mx-11">Comments</div>
-        <div className="bg-gray-100 rounded-lg shadow-lg overflow-hidden mx-9">
-          
-          <div className="p-4">
-            <div className="text-gray-600">
-              <div className="text-sm italic">{review.comment}</div>
+        {/* <div className="flex flex-col pt-6 ">
+          <div className="text-base italic mx-11 pb-1">Comments</div>
+          <div className="bg-gray-100 rounded-lg shadow-lg overflow-hidden mx-9">
+            <div className="p-4">
+              <div className="text-gray-600">
+                <div className="text-sm italic">{review ? <div>{review.comment}</div> : ""}</div>
+              </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="flex justify-between items-center p-6">
-          <div className="mb-4">
+          <div className="mb-4 mx-4">
             {isLiked ? (
               <button
-                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 mt-4"
+                className="bg-red-300 hover:bg-red-400 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 mt-4"
                 onClick={unfavorite}
               >
                 <span>
@@ -94,7 +90,7 @@ export function Detail({ scent, isOwner, cat, review }) {
               </button>
             ) : (
               <button
-                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
+                className="bg-green-400 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
                 onClick={favorite}
               >
                 <span>
@@ -113,7 +109,7 @@ export function Detail({ scent, isOwner, cat, review }) {
                 Edit
               </button>
               <button
-                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
+                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-3 rounded transition-colors duration-300"
                 onClick={() => removeScent(scent.id)}
               >
                 Delete
