@@ -61,10 +61,10 @@ export function Detail({ scent, isOwner, cat }) {
           <div className="mb-4">
             {isLiked ? (
               <button
-                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
+                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 mt-4"
                 onClick={unfavorite}
               >
-                <span className="mr-2">
+                <span>
                   <i className="fas fa-heart-broken"></i>
                 </span>
                 Remove From Favorites
@@ -74,7 +74,7 @@ export function Detail({ scent, isOwner, cat }) {
                 className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
                 onClick={favorite}
               >
-                <span className="mr-2">
+                <span>
                   <i className="fas fa-heart"></i>
                 </span>
                 Add To Favorites

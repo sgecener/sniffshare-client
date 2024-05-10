@@ -155,10 +155,10 @@ const Navbar = () => {
   return (
     <nav className="bg-gradient-to-r from-amber-200 to-orange-500 shadow-md py-4 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <div className="flex items-center">
-          <Link href="/">
+        
+          <Link href="/" className="flex items-center">
             <svg
-              className="fill-current h-8 w-8 mr-2 text-white"
+              className="fill-current h-10 w-10 mr-2 text-black"
               width="54"
               height="54"
               viewBox="0 0 54 54"
@@ -166,11 +166,10 @@ const Navbar = () => {
             >
               <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
             </svg>
-            <span className="font-semibold text-xl tracking-tight text-white">
+            <span className="font-semibold text-xl tracking-tight text-black">
               SniffShare
             </span>
           </Link>
-        </div>
         <div className="navbar-menu flex md:hidden">
           <button
             onClick={toggleDropdown}

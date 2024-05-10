@@ -16,14 +16,15 @@ export default function NewScent() {
   };
 
   return (
-    <ScentForm
-      formEl={formEl}
-      saveEvent={handleSaveScent}
-      tags={tags}
-      setTags={setTags}
-      title="Add A New Scent"
-      router={router}
-    ></ScentForm>
+    <div className="flex justify-center items-center bg-white rounded-lg mt-10 py-8 px-4 max-w-md mx-auto">
+      <ScentForm
+        formEl={formEl}
+        saveEvent={handleSaveScent}
+        tags={tags}
+        setTags={setTags}
+        router={router}
+      />
+    </div>
   );
 }
 
